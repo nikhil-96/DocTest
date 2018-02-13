@@ -1,0 +1,26 @@
+{
+  "name": "DocTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "first.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhil-96/DocTest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhil-96/DocTest/issues"
+  },
+  "homepage": "https://github.com/nikhil-96/DocTest#readme",
+  "dependencies": {
+    "natural": "^0.5.6",
+    "string-similarity": "^1.2.0",
+    "textract": "file:textract-master.tar.gz",
+    "wordpos": "file:wordpos-master.tar.gz"
+  }
+}

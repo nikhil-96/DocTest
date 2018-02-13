@@ -1,0 +1,22 @@
+{
+  "srcFile": {
+    "name": "source.docx",
+    "wordCount": 3587,
+    "nounCount": 335,
+    "verbCount": 188,
+    "adjCount": 150
+  },
+  "tarFile": {
+    "name": "target.docx",
+    "wordCount": 3709,
+    "nounCount": 387,
+    "verbCount": 209,
+    "adjCount": 174
+  },
+  "result": {
+    "status": "Document Accepted on Wordcount basis",
+    "score": 83.5,
+    "similarity": 77,
+    "remarks": "Good Document. Very well Written"
+  }
+}
