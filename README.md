@@ -25,7 +25,3 @@ Install Sublime text 3 and nodejs on your machine. After that you need to instal
 * [JavaScript]
 * [nodejs] (https://nodejs.org/en/)
 * [Sublime text 3](https://www.sublimetext.com/3)
-
-## Acknowledgments
-
-* Hat tip to 960-Grid for providing the structure.
