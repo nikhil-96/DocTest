@@ -1,6 +1,6 @@
 # DocTest
 
-This website evaluate the document you uploaded on the basis of Wordcount, NounCount, VerbCount, AdjectiveCount an dsimilarity from base document and gives output as a json file containing all the stats.
+This website evaluate the document you uploaded on the basis of Wordcount, NounCount, VerbCount, AdjectiveCount and Similarity from base document and gives output as a json file containing all the stats.
 
 ## Getting Started
 
