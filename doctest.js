@@ -15,8 +15,8 @@ var src_adj=0,tar_adj=0;
 var status = 0;
 var tokenText;
 
-var src_address = 'source.docx';
-var tar_address = 'target.docx';
+var src_address = 'res/source.docx';
+var tar_address = 'res/target.docx';
 
 var srcFile = {
   name:"",
