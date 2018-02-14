@@ -7,8 +7,9 @@ function getdata(){
 	
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var myArr=JSON.parse(this.responseText);
-      //var dataObj=JSON.stringify(myArr,null,20);
+      var myArr=JSON.parse(this.responseText);      //taking json data from url and parsing to myArr
+
+      //showing data on index.html in table format
       var show=document.getElementById('msg1');
       show.innerHTML="<table width='500' border='1'><tr><th>Parameter</th><th>Source Document</th><th>Your Document</th></tr>"
       +"<tr><td><strong>File Name</strong></td><td>"+myArr.srcFile.name+"</td><td>"+myArr.tarFile.name+"</td></tr>"
@@ -27,6 +28,7 @@ function getdata(){
 
       +"</b>"+
 
+      // Showing final result to index.html
       "<h3>Final Result </h3>"+"Status : "+"<b>"+myArr.result.status+"</b>"+
       "</br>Similarity from Source Document : "+"<b>"+myArr.result.similarity+"%"+"</b>"+"</br>Score (Out of 100) : "+"<b>"+
       myArr.result.score+"</b>"+"</br>Remarks : "+"<b>"+myArr.result.remarks+"</b>";

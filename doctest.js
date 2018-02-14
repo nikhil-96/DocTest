@@ -8,16 +8,14 @@ const WordPOS = require('wordpos'),
 var tokenizer = new natural.WordTokenizer();
 
 var srcText,tarText;
-var src_wordcount=0,tar_wordcount=0;
-var src_noun=0,tar_noun=0;
-var src_verb=0,tar_verb=0;
-var src_adj=0,tar_adj=0;
 var status = 0;
 var tokenText;
 
+// getting address of both files
 var src_address = 'res/source.docx';
-var tar_address = 'res/target.docx';
+var tar_address = 'res/target_1.docx';
 
+//creating objects to show from json file
 var srcFile = {
   name:"",
   wordCount: 0,
@@ -43,8 +41,9 @@ var result = {
 
 var data={srcFile, tarFile, result};
 
+//start function which handles all promises for reading a file
 function start(){
-  fileReadPromise(src_address,"src").then((message) => {
+  ReadPromise(src_address,"src").then((message) => {
     console.log(message);
     completed();
   })
@@ -52,7 +51,7 @@ function start(){
     console.log(message);
   });
 
-  fileReadPromise(tar_address,"target").then((message) => {
+  ReadPromise(tar_address,"target").then((message) => {
     console.log(message);
     completed();
   })
@@ -61,13 +60,14 @@ function start(){
   });
 }
 
+// completed function which tracks record that both file must be read
 function completed() {
   status++;
   if(status === 2)
-    finish();
+    finish();       // calls when both files successfully read
 }
 
-function fileReadPromise(address, document) {
+function ReadPromise(address, document) {
   var Count = 0;
 
   return new Promise(function(resolve,reject){
@@ -78,50 +78,51 @@ function fileReadPromise(address, document) {
           resolve("Reading file: "+fname);
       }
 
-      var fname = path.basename(address);
+      var fname = path.basename(address);     //extracting file name
       if(document === "src")
         srcFile.name = fname;
-      else if(document == "target")
+      else if(document === "target")
         tarFile.name = fname;
 
       if(error) {
           reject("Document" +fname +"can not be evaluated.");
       } else{
-      	tokenText = tokenizer.tokenize(text);
+      	tokenText = tokenizer.tokenize(text);          //file converted into array of words
 
-        // save text for global function use
+        
         if(document === "src")
-        {
+        {     
+          // srcText is for use in string-similarity
         	srcText = text;
-            srcFile.wordCount = tokenText.length;
+            srcFile.wordCount = tokenText.length;       // counting no of words in source file
             wordpos.getNouns(srcText,function(result){
             	//console.log("\nNouns used: "+result);
-            	srcFile.nounCount = result.length;
+            	srcFile.nounCount = result.length;         // counting no of nouns in source file
             	check();
             });
             wordpos.getAdjectives(srcText, function(result){
-            	srcFile.adjCount = result.length;
+            	srcFile.adjCount = result.length;          // counting no of Adjectives in source file
             	check();
             });
             wordpos.getVerbs(srcText, function(result){
-            	srcFile.verbCount = result.length;
+            	srcFile.verbCount = result.length;         // counting no of verbs in source file
             	check();
             });
         }
         else if(document === "target")
         {
         	tarText = text;
-            tarFile.wordCount = tokenText.length;
-            wordpos.getNouns(tarText,function(result){
-            	tarFile.nounCount = result.length;
+            tarFile.wordCount = tokenText.length;       // counting no of words in target file
+            wordpos.getNouns(tarText,function(result){  
+            	tarFile.nounCount = result.length;         // counting no of nouns in target file
             	check();
             });
             wordpos.getAdjectives(tarText, function(result){
-            	tarFile.adjCount = result.length;
+            	tarFile.adjCount = result.length;          // counting no of Adjectives in target file
             	check();
             });
             wordpos.getVerbs(tarText, function(result){
-            	tarFile.verbCount = result.length;
+            	tarFile.verbCount = result.length;         // counting no of verbs in target file
             	check();
             });
         }
@@ -135,22 +136,24 @@ var finish = function(){
 	console.log(srcFile);
 	console.log(tarFile);
 
-	if(tarFile.wordCount>=srcFile.wordCount-500 && tarFile.wordCount<=srcFile.wordCount+500){
+	if(tarFile.wordCount>=srcFile.wordCount-1000 && tarFile.wordCount<=srcFile.wordCount+1000){    // Wordcount criteria
 
 		result.status = "Document Accepted on Wordcount basis";
 		var marks = 100;
+
+    // reducing marks on the basis of difference from source file
 		marks -= Math.abs((srcFile.nounCount/srcFile.wordCount)*500 - (tarFile.nounCount/tarFile.wordCount)*500);
 		marks -= Math.abs((srcFile.adjCount/srcFile.wordCount)*500 - (tarFile.adjCount/tarFile.wordCount)*500);
 		marks -= Math.abs((srcFile.verbCount/srcFile.wordCount)*500 - (tarFile.verbCount/tarFile.wordCount)*500);
 
-		marks = Math.round(marks);
+		marks = Math.round(marks);        //Rounding off marks 
 
-		var similarity = stringSimilarity.compareTwoStrings(srcText, tarText);
-		result.similarity = Math.round(similarity*100);
+		var similarity = stringSimilarity.compareTwoStrings(srcText, tarText);   //calculating similarity between source and target files
+		result.similarity = Math.round(similarity*100);     //rounding off similarity
 
 		result.score = (marks+result.similarity)/2;
 		
-		if(result.score>=80)
+		if(result.score>=80)                  //remarks criteria
 			result.remarks = "Good Document. Very well Written";
 		else if(result.score>=60 && result.score<80)
 			result.remarks = "Average Document. Need more improvement";
@@ -166,8 +169,9 @@ var finish = function(){
 		result.remarks = "Try to make your document under acceptable limits : [" +srcFile.wordCount-500 +"-" +srcFile.wordCount+500 +"]";
 	}
 
+  //stringify data object and put in json
 	let json = JSON.stringify(data,null,2);
-	fs.writeFile('output.json',json,'utf8',(err) => {
+	fs.writeFile('output.json',json,'utf8',(err) => {     //writing json into a output.json file
 	  if(err){
 	    console.log("Error");
 	    return;
@@ -177,69 +181,3 @@ var finish = function(){
 }
 
 start();
-
-/*
-var temp = path.basename(tar_address);
-var tarf_name = temp.split('.');
-var tarf_ext = path.extname(tar_address);
-console.log("Filename : "+tarf_name[0]);
-console.log("FileExtension : "+tarf_ext);
-
-var twoinone = function(file,key){
-	return new Promise((resolve,reject)=>{
-		//reading files
-		textract.fromFileWithPath(src_address,{preserveLineBreaks:true}, function( error, text ) {
-			if(error)
-				console.log("Error Code : "+error);
-			else{
-				//console.log(text);
-				srcFile = text;
-				tokenText = tokenizer.tokenize(srcFile);
-				src_wordcount = tokenText.length;
-				console.log("Source file Wordcount : " +src_wordcount);
-				wordpos.getNouns(srcFile, function(result){
-					src_noun = (result.length/src_word) * 500;
-					console.log(src_noun);
-				});
-				wordpos.getVerbs(srcFile, function(result){
-		    		src_verb = (result.length/src_word) * 500;
-		    		console.log(src_verb);
-				});
-				wordpos.getAdjectives(srcFile, function(result){
-		    		src_adj = (result.length/src_word) * 500;
-		    		console.log(src_adj);
-				});
-			}
-
-		})
-	});
-};
-
-let promises = [];
-let f1 = twoinone()
-
-textract.fromFileWithPath(tar_address,{preserveLineBreaks:true}, function( error, text ) {
-	if(error)
-		console.log("Error! The file " +tarf_name+tarf_ext +"can not be evaluated");
-	else{
-		//console.log(text);
-		tarFile = text;
-		tokenText = tokenizer.tokenize(tarFile);
-		tar_wordcount = tokenText.length;
-		console.log("Target file Wordcount : " +tar_wordcount);
-		wordpos.getNouns(tarFile, function(result){
-			tar_noun = (result.length/tar_word) * 500;
-			console.log(tar_noun);
-		});
-		wordpos.getVerbs(tarFile, function(result){
-    		tar_verb = (result.length/tar_word) * 500;
-    		console.log(tar_verb);
-		});
-		wordpos.getAdjectives(tarFile, function(result){
-    		tar_adj = (result.length/tar_word) * 500;
-    		console.log(tar_adj);
-		});
-	}
-
-})
-*/

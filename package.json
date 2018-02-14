@@ -1,8 +1,8 @@
 {
   "name": "DocTest",
   "version": "1.0.0",
-  "description": "",
-  "main": "first.js",
+  "description": "This website evaluate the document you uploaded on the basis of Wordcount, NounCount, VerbCount, AdjectiveCount and Similarity from base document and gives output as a json file containing all the stats.",
+  "main": "doctest.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
