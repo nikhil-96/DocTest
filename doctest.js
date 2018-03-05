@@ -51,7 +51,7 @@ var data={srcFile, tarFile, result};
 
 //start function which handles all promises for reading a file
 function start(){
-  ReadPromise(src_address,"src").then((message) => {
+  readFile(src_address,"src").then((message) => {
     console.log(message);
     completed();
   })
@@ -59,7 +59,7 @@ function start(){
     console.log(message);
   });
 
-  ReadPromise(tar_address,"target").then((message) => {
+  readFile(tar_address,"target").then((message) => {
     console.log(message);
     completed();
   })
@@ -75,7 +75,7 @@ function completed() {
     finish();       // calls when both files successfully read
 }
 
-function ReadPromise(address, document) {
+function readFile(address, document) {
   var Count = 0;
 
   return new Promise(function(resolve,reject){
@@ -164,8 +164,8 @@ var finish = function(){
 		marks -= Math.abs((srcFile.nounCount/srcFile.wordCount)*500 - (tarFile.nounCount/tarFile.wordCount)*500);
 		marks -= Math.abs((srcFile.adjCount/srcFile.wordCount)*500 - (tarFile.adjCount/tarFile.wordCount)*500);
 		marks -= Math.abs((srcFile.verbCount/srcFile.wordCount)*500 - (tarFile.verbCount/tarFile.wordCount)*500);
-    marks = Math.round(marks);        //Rounding off marks 
-    var similarity = natural.JaroWinklerDistance(srcText,tarText);   //calculating similarity between source and target files
+    		marks = Math.round(marks);        //Rounding off marks 
+    		var similarity = natural.JaroWinklerDistance(srcText,tarText);   //calculating similarity between source and target files
 		result.similarity = Math.round(similarity*100);     //rounding off similarity
 
 		result.score = (marks+result.similarity)/2;
