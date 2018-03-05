@@ -1,19 +1,25 @@
 const fs = require('fs');
 const natural = require('natural');
 const path = require('path');
-const textract = require('textract');
 const stringSimilarity = require('string-similarity');
-const WordPOS = require('wordpos'),
-    wordpos = new WordPOS();
 var tokenizer = new natural.WordTokenizer();
+
+var base_folder = path.join(path.dirname(require.resolve("natural")), "brill_pos_tagger");
+var rulesFilename = base_folder + "/data/English/tr_from_posjs.txt";
+var lexiconFilename = base_folder + "/data/English/lexicon_from_posjs.json";
+var defaultCategory = 'N';
+
+var lexicon = new natural.Lexicon(lexiconFilename, defaultCategory);
+var rules = new natural.RuleSet(rulesFilename);
+var tagger = new natural.BrillPOSTagger(lexicon, rules);
 
 var srcText,tarText;
 var status = 0;
 var tokenText;
 
 // getting address of both files
-var src_address = 'res/source.docx';
-var tar_address = 'res/target_1.docx';
+var src_address = 'res/source.txt';
+var tar_address = 'res/target.txt';
 
 //creating objects to show from json file
 var srcFile = {
@@ -71,10 +77,8 @@ function ReadPromise(address, document) {
   var Count = 0;
 
   return new Promise(function(resolve,reject){
-    textract.fromFileWithPath(address, {preserveLineBreaks:true},function( error, text ) {
+    var text = fs.readFileSync(address,'utf8');
       function check(){
-        Count++;
-        if(Count % 3 === 0)
           resolve("Reading file: "+fname);
       }
 
@@ -84,51 +88,46 @@ function ReadPromise(address, document) {
       else if(document === "target")
         tarFile.name = fname;
 
-      if(error) {
+      if(text === null) {
           reject("Document" +fname +"can not be evaluated.");
       } else{
       	tokenText = tokenizer.tokenize(text);          //file converted into array of words
 
-        
+        var taggerJSON = tagger.tag(tokenText);
+
         if(document === "src")
         {     
           // srcText is for use in string-similarity
         	srcText = text;
             srcFile.wordCount = tokenText.length;       // counting no of words in source file
-            wordpos.getNouns(srcText,function(result){
-            	//console.log("\nNouns used: "+result);
-            	srcFile.nounCount = result.length;         // counting no of nouns in source file
-            	check();
-            });
-            wordpos.getAdjectives(srcText, function(result){
-            	srcFile.adjCount = result.length;          // counting no of Adjectives in source file
-            	check();
-            });
-            wordpos.getVerbs(srcText, function(result){
-            	srcFile.verbCount = result.length;         // counting no of verbs in source file
-            	check();
-            });
+             for(var arr of taggerJSON){
+                  if(arr[1] == "NN" || arr[1] == "NNP" || arr[1] == "NNPS")
+                    srcFile.nounCount++;
+                  else if(arr[1] == "VB" || arr[1] == "VBD" || arr[1] == "VBG" || arr[1] == "VBN" || arr[1] == "VBP" || arr[1] == "VBZ")
+                    srcFile.verbCount++;
+                  else if(arr[1] == "JJ" || arr[1] == "JJR" || arr[1] == "JJS")
+                    srcFile.adjCount++;
+                
+                }
+          check();
         }
         else if(document === "target")
         {
         	tarText = text;
             tarFile.wordCount = tokenText.length;       // counting no of words in target file
-            wordpos.getNouns(tarText,function(result){  
-            	tarFile.nounCount = result.length;         // counting no of nouns in target file
-            	check();
-            });
-            wordpos.getAdjectives(tarText, function(result){
-            	tarFile.adjCount = result.length;          // counting no of Adjectives in target file
-            	check();
-            });
-            wordpos.getVerbs(tarText, function(result){
-            	tarFile.verbCount = result.length;         // counting no of verbs in target file
-            	check();
-            });
+            for(var arr of taggerJSON){
+                  if(arr[1] == "NN" || arr[1] == "NNP" || arr[1] == "NNPS")
+                    tarFile.nounCount++;
+                  else if(arr[1] == "VB" || arr[1] == "VBD" || arr[1] == "VBG" || arr[1] == "VBN" || arr[1] == "VBP" || arr[1] == "VBZ")
+                    tarFile.verbCount++;
+                  else if(arr[1] == "JJ" || arr[1] == "JJR" || arr[1] == "JJS")
+                    tarFile.adjCount++;
+                
+                }
+          check();
         }
       }
         
-    })
   })
 }
 
@@ -148,7 +147,7 @@ var finish = function(){
 
 		marks = Math.round(marks);        //Rounding off marks 
 
-		var similarity = stringSimilarity.compareTwoStrings(srcText, tarText);   //calculating similarity between source and target files
+		var similarity = natural.JaroWinklerDistance(srcText,tarText);   //calculating similarity between source and target files
 		result.similarity = Math.round(similarity*100);     //rounding off similarity
 
 		result.score = (marks+result.similarity)/2;
@@ -180,4 +179,4 @@ var finish = function(){
 	})
 }
 
-start();
+start();      // start evaluating the document

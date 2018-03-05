@@ -1,22 +1,22 @@
 {
   "srcFile": {
-    "name": "source.docx",
+    "name": "source.txt",
     "wordCount": 3587,
-    "nounCount": 335,
-    "verbCount": 188,
-    "adjCount": 150
+    "nounCount": 710,
+    "verbCount": 600,
+    "adjCount": 154
   },
   "tarFile": {
-    "name": "target_1.docx",
-    "wordCount": 3295,
-    "nounCount": 230,
-    "verbCount": 138,
-    "adjCount": 105
+    "name": "target.txt",
+    "wordCount": 3297,
+    "nounCount": 871,
+    "verbCount": 512,
+    "adjCount": 163
   },
   "result": {
     "status": "Document Accepted on Wordcount basis",
-    "score": 76,
-    "similarity": 74,
+    "score": 68,
+    "similarity": 78,
     "remarks": "Average Document. Need more improvement"
   }
 }

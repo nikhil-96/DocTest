@@ -1,0 +1,670 @@
+HTML Basics
+
+Welcome to HTML Basics. This workshop leads you through the basics of Hyper Text Markup Language (HTML). HTML is the building block for web pages. You will learn to use HTML to author an HTML page to display in a web browser.
+
+Objectives:
+By the end of this workshop, you will be able to:
+
+Use a text editor to author an HTML document.
+
+Be able to use basic tags to denote paragraphs, emphasis or special type.
+
+Create hyperlinks to other documents.
+
+Create an email link.
+
+Add images to your document.
+
+Use a table for layout.
+
+Apply colors to your HTML document.
+
+Prerequisites:
+
+You will need a text editor, such as Notepad++ (https://notepad-plus-plus.org/) and a web browser. Any web browser will do just fine.
+
+Mac Users: SimpleText is the default text editor on the Mac. In OSX use TextEdit and change the following preferences: Select (in the preferences window) Plain text instead of Rich text and then select Ignore rich text commands in HTML files. This is very important because if you don't do this HTML codes probably won't work.
+
+One thing you should avoid using is a word processor (like Microsoft Word) for authoring your HTML documents.
+
+What is an html File?
+
+HTML is a format that tells a computer how to display a web page. The documents themselves are plain text files with special "tags" or codes that a web browser uses to interpret and display information on your computer screen.
+
+HTML stands for Hyper Text Markup Language
+
+An HTML file is a text file containing small markup tags
+
+The markup tags tell the Web browser how to display the page
+
+An HTML file must have an htm or html file extension
+
+Try It?
+Open your text editor and type the following text:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>My First Webpage</title>
+</head>
+<body>
+This is my first homepage. <b>This text is bold</b>
+</body>
+</html>
+
+Save the file as index.html. Now move to the folder where you stored this file and double click the file to open it in your default browser. You can also select other browser by right clicking and select open with.
+
+Example Explained
+
+What you just made is a skeleton html document. This is the minimum required information for a web document and all web documents should contain these basic components. The first tag in your html document is <!DOCTYPE html> which tells your browser that this is a document type and this convention denotes the latest version of HTML which is HTML5. The next tag in your html document is <html>. This tag tells your browser that this is the start of an html document. The last tag in your document is </html>. This tag tells your browser that this is the end of the html document.
+
+The text between the <head> tag and the </head> tag is header information. Header information is not displayed in the browser window.
+
+The text between the <title> tags is the title of your document. The <title> tag is used to uniquely identify each document and is also displayed in the title bar of the browser window.
+
+The text between the <body> tags is the text that will be displayed in your browser.
+
+The text between the <b> and </b> tags will be displayed in a bold font.
+
+
+
+
+HTM or HTML Extension?
+
+When you save an HTML file, you can use either the .htm or the .html extension. The .htm extension comes from the past when some of the commonly used software only allowed three letter extensions. It is perfectly safe to use either .html or .htm, but be consistent. index.htm and index.html are treated as different files by the browser.
+
+
+HTML Elements
+Remember the HTML example from the previous page:
+
+<html>
+
+<head>
+<title>My First Webpage</title>
+</head>
+<body>
+This is my first homepage. <b>This text is bold</b>
+</body>
+</html>
+
+This is an HTML element:
+
+<b>This text is bold</b>
+
+The HTML element begins with a start tag: <b>
+The content of the HTML element is: This text is bold
+
+The HTML element ends with an end tag: </b>
+
+The purpose of the <b> tag is to define an HTML element that should be displayed as bold.
+
+This is also an HTML element:
+
+<body>
+
+This is my first homepage. <b>This text is bold</b> </body>
+
+This HTML element starts with the start tag <body>, and ends with the end tag </body>. The purpose of the <body> tag is to define the HTML element that contains the body of the HTML document.
+
+Note: It doesn't matter which tag is first, but they must be closed in the proper order.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Basic HTML Tags
+
+The most important tags in HTML are tags that define headings, paragraphs and line breaks.
+
+<html> - Defines an HTML document
+
+<body> - Defines the document's body
+
+<h1> to <h6> - Defines header 1 to header 6
+
+<p> - Defines a paragraph
+
+<br> - Inserts a single line break
+
+<hr> - Defines a horizontal rule
+
+<!--   --> - Defines a comment
+
+Headings
+
+Headings are defined with the <h1> to <h6> tags. <h1> defines the largest heading while <h6> defines the smallest.
+
+<h1>This is a heading</h1>
+
+<h2>This is a heading</h2>
+
+<h3>This is a heading</h3>
+
+<h4>This is a heading</h4>
+
+<h5>This is a heading</h5>
+
+<h6> This is a heading</h6>
+
+HTML automatically adds an extra blank line before and after a heading. A useful heading attribute is align.
+<h5 align="left">I can align headings </h5>
+
+<h5 align="center">This is a centered heading </h5>
+
+<h5 align="right">This is a heading aligned to the right </h5>
+
+Paragraphs
+
+Paragraphs are defined with the <p> tag. Think of a paragraph as a block of text. You can use the align attribute with a paragraph tag as well.
+
+<p align="left">This is a paragraph</p>
+
+<p align="center">this is another paragraph</p>
+
+Line Breaks
+
+The <br> tag is used when you want to start a new line, but don't want to start a new paragraph. 
+Comments in HTML
+
+The comment tag is used to insert a comment in the HTML source code. 
+<!--  This is a Comment -->
+
+Other HTML Tags
+
+
+
+Visit https://www.quackit.com/html/tags/ for complete list of HTML5 tags.
+Character tags like <strong> and <em> produce the same physical display as <b> and <i> but are more uniformly supported across different browsers.
+
+
+
+HTML Backgrounds
+
+Backgrounds
+
+The <body> tag has two attributes where you can specify backgrounds. The background can be a color or an image.
+
+Bgcolor
+
+The bgcolor attribute specifies a background-color for an HTML page. The value of this attribute can be a hexadecimal number, an RGB value, or a color name:
+
+<body bgcolor="#000000">
+
+<body bgcolor="rgb(0,0,0)">
+<body bgcolor="black">
+
+The lines above all set the background-color to black.
+
+Background
+
+The background attribute can also specify a background-image for an HTML page. The value of this attribute is the URL of the image you want to use. If the image is smaller than the browser window, the image will repeat itself until it fills the entire browser window.
+
+<body background="clouds.gif">
+
+Try It Out!
+Open your text editor and type the following text
+
+
+<html>
+
+<head>
+<title>My First Webpage</title>
+</head>
+<body background=" https://static.pexels.com/photos/110854/pexels-photo-110854.jpeg " bgcolor="#EDDD9E">
+
+<h1 align="center">My First Webpage</h1>
+<p>Welcome to my <strong>first</strong> webpage. I am writing this page using a text editor and plain old html.</p>
+
+<p>By learning html, I'll be able to create webpages like a <del>beginner</del> pro....<br>
+which I am of course.</p>
+</body>
+</html>
+
+Save your page as mypage3.html and view it in your browser.
+
+
+Notice we gave our page a background color as well as a background image. If for some reason the web page is unable to find the picture, it will display our background color.
+HTML Lists
+
+HTML provides a simple way to show unordered lists (bullet lists) or ordered lists (numbered lists).
+
+Unordered Lists
+
+An unordered list is a list of items marked with bullets (typically small black circles). An unordered list starts with the <ul> tag. Each list item starts with the <li> tag.
+
+
+This Code
+
+Would Display
+<ul>
+
+
+<li>Coffee</li>
+
+Coffee
+<li>Milk</li>
+
+Milk
+</ul>
+
+
+
+Ordered Lists
+
+An ordered list is also a list of items. The list items are marked with numbers. An ordered list starts with the <ol> tag. Each list item starts with the <li> tag.
+
+
+This Code
+
+Would Display
+<ol>
+
+
+<li>Coffee</li>
+
+1. Coffee
+<li>Milk</li>
+
+2. Milk
+</ol>
+
+
+
+Inside a list item you can put paragraphs, line breaks, images, links, other lists, etc.
+
+Definition Lists
+
+Definition lists consist of two parts: a term and a description. To mark up a definition list, you need three HTML elements; a container <dl>, a definition term <dt>, and a definition description <dd>.
+
+
+This Code
+Would Display
+<dl>
+
+<dt>Cascading Style Sheets</dt>
+Cascading Style Sheets
+<dd>Style sheets are used to provide
+Style sheets are used to provide
+presentational suggestions for
+presentational suggestions for
+documents marked up in HTML
+documents marked up in HTML.
+</dd>
+
+
+
+</dl>
+
+
+Inside a definition-list definition (the <dd> tag) you can put paragraphs, line breaks, images, links, other lists, etc.
+
+
+Try It Out
+Open your text editor and type the following:
+
+<html>
+
+<head>
+<title>My First Webpage</title>
+</head>
+<body bgcolor="#EDDD9E">
+<h1 align="center">My First Webpage</h1>
+<p>Welcome to my <strong>first</strong> webpage. I am writing this page using a text editor and plain old html.</p>
+
+<p>By learning html, I'll be able to create web pages like a pro....<br>
+which I am of course.</p>
+Here's what I've learned:
+<ul>
+<li>How to use HTML tags</li>
+<li>How to use HTML colors</li>
+<li>How to create Lists</li>
+</ul>
+</body>
+</html>
+
+Save your page as mypage4.html and view it in your browser. 
+
+HTML Styles – CSS
+
+
+CSS stands for Cascading Style Sheets.
+CSS describes how HTML elements are to be displayed on screen, paper, or in other media.
+CSS saves a lot of work. It can control the layout of multiple web pages all at once.
+CSS can be added to HTML elements in 3 ways:
+Inline - by using the style attribute in HTML elements 
+Internal - by using a <style> element in the <head> section 
+External - by using an external CSS file 
+The most common way to add CSS, is to keep the styles in separate CSS files. However, here we will use inline and internal styling, because this is easier to demonstrate, and easier for you to try it yourself. 
+
+Inline CSS
+An inline CSS is used to apply a unique style to a single HTML element.
+An inline CSS uses the style attribute of an HTML element.
+This example sets the text color of the <h1> element to blue:
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1 style="color:blue;">This is a Blue Heading</h1>
+</body>
+</html>
+
+Output :-
+This is a Blue Heading
+
+Internal CSS
+An internal CSS is used to define a style for a single HTML page.
+An internal CSS is defined in the <head> section of an HTML page, within a <style> element:
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color: powderblue;}
+h1 {color: blue;}
+p {color: red;}
+</style>
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html> 
+
+Output :-
+This is a heading
+This is a paragraph
+
+External CSS
+An external style sheet is used to define the style for many HTML pages.
+With an external style sheet, you can change the look of an entire web site, by changing one file!
+To use an external style sheet, add a link to it in the <head> section of the HTML page:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html> 
+
+An external style sheet can be written in any text editor. The file must not contain any HTML code, and must be saved with a .css extension.
+Here is how the "styles.css" looks:
+body {
+	 background-color: powderblue;
+}
+h1 {
+	 color: blue;
+}
+p {	
+	 color: red;
+}
+
+Output :-
+This is a heading
+This is a paragraph.
+
+
+CSS Fonts
+
+The CSS color property defines the text color to be used.
+The CSS font-family property defines the font to be used.
+The CSS font-size property defines the text size to be used.
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+ 	color: blue;
+	font-family: verdana;
+ 	font-size: 300%;
+}
+p {
+ 	color: red;
+ 	font-family: courier;
+ 	font-size: 160%;
+}
+</style>
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html> 
+HTML Basics
+
+Welcome to HTML Basics. This workshop leads you through the basics of Hyper Text Markup Language (HTML). HTML is the building block for web pages. You will learn to use HTML to author an HTML page to display in a web browser.
+
+Objectives:
+By the end of this workshop, you will be able to:
+
+Use a text editor to author an HTML document.
+
+Be able to use basic tags to denote paragraphs, emphasis or special type.
+
+Create hyperlinks to other documents.
+
+Create an email link.
+
+Add images to your document.
+
+Use a table for layout.
+
+Apply colors to your HTML document.
+
+Prerequisites:
+
+You will need a text editor, such as Notepad++ (https://notepad-plus-plus.org/) and a web browser. Any web browser will do just fine.
+
+Mac Users: SimpleText is the default text editor on the Mac. In OSX use TextEdit and change the following preferences: Select (in the preferences window) Plain text instead of Rich text and then select Ignore rich text commands in HTML files. This is very important because if you don't do this HTML codes probably won't work.
+
+One thing you should avoid using is a word processor (like Microsoft Word) for authoring your HTML documents.
+
+What is an html File?
+
+HTML is a format that tells a computer how to display a web page. The documents themselves are plain text files with special "tags" or codes that a web browser uses to interpret and display information on your computer screen.
+
+HTML stands for Hyper Text Markup Language
+
+An HTML file is a text file containing small markup tags
+
+The markup tags tell the Web browser how to display the page
+
+An HTML file must have an htm or html file extension
+
+Try It?
+Open your text editor and type the following text:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>My First Webpage</title>
+</head>
+<body>
+This is my first homepage. <b>This text is bold</b>
+</body>
+</html>
+
+Save the file as index.html. Now move to the folder where you stored this file and double click the file to open it in your default browser. You can also select other browser by right clicking and select open with.
+
+Example Explained
+
+What you just made is a skeleton html document. This is the minimum required information for a web document and all web documents should contain these basic components. The first tag in your html document is <!DOCTYPE html> which tells your browser that this is a document type and this convention denotes the latest version of HTML which is HTML5. The next tag in your html document is <html>. This tag tells your browser that this is the start of an html document. The last tag in your document is </html>. This tag tells your browser that this is the end of the html document.
+
+The text between the <head> tag and the </head> tag is header information. Header information is not displayed in the browser window.
+
+The text between the <title> tags is the title of your document. The <title> tag is used to uniquely identify each document and is also displayed in the title bar of the browser window.
+
+The text between the <body> tags is the text that will be displayed in your browser.
+
+The text between the <b> and </b> tags will be displayed in a bold font.
+
+
+
+
+HTM or HTML Extension?
+
+When you save an HTML file, you can use either the .htm or the .html extension. The .htm extension comes from the past when some of the commonly used software only allowed three letter extensions. It is perfectly safe to use either .html or .htm, but be consistent. index.htm and index.html are treated as different files by the browser.
+
+
+HTML Elements
+Remember the HTML example from the previous page:
+
+<html>
+
+<head>
+<title>My First Webpage</title>
+</head>
+<body>
+This is my first homepage. <b>This text is bold</b>
+</body>
+</html>
+
+This is an HTML element:
+
+<b>This text is bold</b>
+
+The HTML element begins with a start tag: <b>
+The content of the HTML element is: This text is bold
+
+The HTML element ends with an end tag: </b>
+
+The purpose of the <b> tag is to define an HTML element that should be displayed as bold.
+
+This is also an HTML element:
+
+<body>
+
+This is my first homepage. <b>This text is bold</b> </body>
+
+This HTML element starts with the start tag <body>, and ends with the end tag </body>. The purpose of the <body> tag is to define the HTML element that contains the body of the HTML document.
+
+Note: It doesn't matter which tag is first, but they must be closed in the proper order.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Basic HTML Tags
+
+The most important tags in HTML are tags that define headings, paragraphs and line breaks.
+
+<html> - Defines an HTML document
+
+<body> - Defines the document's body
+
+<h1> to <h6> - Defines header 1 to header 6
+
+<p> - Defines a paragraph
+
+<br> - Inserts a single line break
+
+<hr> - Defines a horizontal rule
+
+<!--   --> - Defines a comment
+
+Headings
+
+Headings are defined with the <h1> to <h6> tags. <h1> defines the largest heading while <h6> defines the smallest.
+
+<h1>This is a heading</h1>
+
+<h2>This is a heading</h2>
+
+<h3>This is a heading</h3>
+
+<h4>This is a heading</h4>
+
+<h5>This is a heading</h5>
+
+<h6> This is a heading</h6>
+
+HTML automatically adds an extra blank line before and after a heading. A useful heading attribute is align.
+<h5 align="left">I can align headings </h5>
+
+<h5 align="center">This is a centered heading </h5>
+
+<h5 align="right">This is a heading aligned to the right </h5>
+
+Paragraphs
+
+Paragraphs are defined with the <p> tag. Think of a paragraph as a block of text. You can use the align attribute with a paragraph tag as well.
+
+<p align="left">This is a paragraph</p>
+
+<p align="center">this is another paragraph</p>
+
+Line Breaks
+
+The <br> tag is used when you want to start a new line, but don't want to start a new paragraph. 
+Comments in HTML
+
+The comment tag is used to insert a comment in the HTML source code. 
+<!--  This is a Comment -->
+
+Other HTML Tags
+
+
+
+Visit https://www.quackit.com/html/tags/ for complete list of HTML5 tags.
+Character tags like <strong> and <em> produce the same physical display as <b> and <i> but are more uniformly supported across different browsers.
+
+
+
+HTML Backgrounds
+
+Backgrounds
+
+The <body> tag has two attributes where you can specify backgrounds. The background can be a color or an image.
+
+Bgcolor
+
+The bgcolor attribute specifies a background-color for an HTML page. The value of this attribute can be a hexadecimal number, an RGB value, or a color name:
+
+<body bgcolor="#000000">
+
+<body bgcolor="rgb(0,0,0)">
+<body bgcolor="black">
+
+The lines above all set the background-color to black.
+
+

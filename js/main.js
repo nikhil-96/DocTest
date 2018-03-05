@@ -10,7 +10,7 @@ function getdata(){
       var myArr=JSON.parse(this.responseText);      //taking json data from url and parsing to myArr
 
       //showing data on index.html in table format
-      var show=document.getElementById('msg1');
+      var show=document.getElementById('output');
       show.innerHTML="<table width='500' border='1'><tr><th>Parameter</th><th>Source Document</th><th>Your Document</th></tr>"
       +"<tr><td><strong>File Name</strong></td><td>"+myArr.srcFile.name+"</td><td>"+myArr.tarFile.name+"</td></tr>"
       +"<tr><td><strong>Word Count</strong></td><td>"+myArr.srcFile.wordCount+"</td><td>"+myArr.tarFile.wordCount+"</td></tr>"
@@ -26,7 +26,7 @@ function getdata(){
       "</br>Word Count : "+"<b>"+myArr.tarFile.wordCount+"</b>"+"</br>Noun Count : "+"<b>"+
       myArr.tarFile.nounCount+"</b>"+"</br>Verb Count : "+"<b>"+myArr.tarFile.verbCount+"</b>"+"</br>Adjective Count : "+"<b>"+myArr.tarFile.adjCount*/
 
-      +"</b>"+
+      +"<br>"+
 
       // Showing final result to index.html
       "<h3>Final Result </h3>"+"Status : "+"<b>"+myArr.result.status+"</b>"+
@@ -34,4 +34,5 @@ function getdata(){
       myArr.result.score+"</b>"+"</br>Remarks : "+"<b>"+myArr.result.remarks+"</b>";
     }
   };
+  alert("Evaluated Successfully!!");
 }
