@@ -13,7 +13,7 @@ What things you need to install the software and how to install them :
 You need a text editor for working on these files. I personally use Sublime text 3.
 https://www.sublimetext.com/3
 
-Apart from this you need nodejs (https://nodejs.org/en/download/), natural library of npm (https://www.npmjs.com/package/natural), textract (https://www.npmjs.com/package/textract), string-similarity (https://www.npmjs.com/package/string-similarity), and wordpos (https://www.npmjs.com/package/wordpos).
+Apart from this you need nodejs (https://nodejs.org/en/download/), natural library of npm (https://www.npmjs.com/package/natural).
 
 ### Installing
 
